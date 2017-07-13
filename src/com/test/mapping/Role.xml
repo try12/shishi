@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.dao.RoleDao">
+
+	<insert id="addRole" parameterType="com.test.entity.Role">
+		insert into role(roles) values(#{roles})
+	</insert>
+	<select id="findAllRole" resultType="com.test.entity.Role">
+
+		select * from role limit #{start},2
+	</select>
+
+	<update id="updateRole" parameterType="com.test.entity.Role">
+		update role set roles=#{roles} where rzid=#{rzid}
+	</update>
+
+	<delete id="removeRole" parameterType="list">
+
+		delete from role where rzid in
+		<foreach collection="list" item="items" open="(" separator=","
+			close=")">
+
+			#{items}
+
+		</foreach>
+		</delete>
+</mapper>
